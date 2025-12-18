@@ -40,7 +40,8 @@ class AlarmScheduler {
       channelDescription: 'Scheduled wake-up alarms',
       importance: Importance.max,
       priority: Priority.high,
-      sound: playSound ? const RawResourceAndroidNotificationSound('alarm') : null,
+      // Use default alarm sound; provide custom raw sound later if desired.
+      sound: null,
       fullScreenIntent: true,
       category: AndroidNotificationCategory.alarm,
     );
@@ -62,7 +63,7 @@ class AlarmScheduler {
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time, // wake screens reliably
+      // Single-shot schedule; do not match components for repetition.
     );
   }
 }
